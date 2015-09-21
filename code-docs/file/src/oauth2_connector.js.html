@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/oauth2_connector.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+</head>
+<body class="layout-container">
+
+<header>
+  <a href="./">Home</a>
+  <a href="identifiers.html">Identifier</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://github.com/hoist/hoist-connector-github.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div data-ice="classWrap">
+  <h2>Class</h2>
+  <ul>
+    
+  <li data-ice="classDoc"><span><a href="class/src/oauth2_connector.js~OAuth2Connector.html">OAuth2Connector</a></span></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/oauth2_connector.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&apos;use strict&apos;;
+import Bluebird from &apos;bluebird&apos;;
+import config from &apos;config&apos;;
+import {
+  OAuth2
+}
+from &apos;@hoist/oauth&apos;;
+
+/**
+ * @protected
+ * The base OAuth2 Connector class used for Hoist Connectors to implement OAuth2 flows
+ * @implements {ConnectorInterface}
+ */
+export default class OAuth2Connector {
+
+  /**
+   * @protected
+   * create a new OAuth2Connector
+   * @param {object} configuration - the configuration details for this connector
+   * @param {string} configuration.clientId - the OAuth2 client id
+   * @param {string} configuration.clientSecret - the OAuth2 client secret
+   * @param {string} configuration.baseSite - the base uri to use for authorization calls
+   * @param {string} [configuration.authorizationPath=/oauth/authorize] - the path to send users to authorise access
+   * @param {string} [configuration.accessTokenPath=/oauth/access_token] - the path to use to retrieve access tokens
+   * @param {object} [configuration.customHeaders] - any custom headers to send
+   */
+  constructor(configuration) {
+    this._auth = Bluebird.promisifyAll(new OAuth2(configuration.clientId, configuration.clientSecret, configuration.baseSite, configuration.authorizationPath, configuration.accessTokenPath, configuration.customHeaders));
+  }
+
+  /**
+   * Populate any extra params needed to grant access
+   * @protected
+   * @param {AuthorizationStore} authorization - the users authorisation store
+   * @returns {Promise&lt;object&gt;} - an object containing key value pairs to send with the client to the authorization url
+   */
+  _authorizeParams(authorization) {
+    return Promise.resolve({
+      redirect_uri: `https://${config.get(&apos;Hoist.domains.bouncer&apos;)}/bounce`
+    });
+  }
+
+  /**
+   * Populate any extra params needed to request the access token
+   * @protected
+   * @param {AuthorizationStore} authorization - the users authorisation store
+   * @returns {Promise&lt;object&gt;} - an object containing key value pairs to send with the access token request
+   */
+  _accessParams(authorization) {
+    return Promise.resolve();
+  }
+
+  /**
+   * perform an authorized request
+   * @param {string} method - the HTTP method to call
+   * @param {string} requestUri - the uri of the request to call
+   * @param {object} body - the data to send
+   * @param {string} contentType - the contentType header
+   */
+  _performRequest(method, requestUri, body, contentType) {
+    let headers = {
+      &apos;Content-Type&apos;: contentType,
+      &apos;User-Agent&apos;: &apos;Hoist&apos;,
+      &apos;Authorization&apos;: this._auth.buildAuthHeader(this._accessToken)
+    };
+    return this._auth._requestAsync(method, requestUri, headers, this._accessToken);
+  }
+
+  /**
+   * authorize the oauth connection with existing parameters
+   * @param {&lt;AuthorizationStore&gt;} authorization - the users authorization
+   */
+  authorize(authorization) {
+    this._accessToken = authorization.get(&apos;AccessToken&apos;);
+    this._refreshToken = authorization.get(&apos;RefreshToken&apos;);
+  }
+
+  /**
+   * @param {AuthorizationStore} authorization - the users authorization
+   */
+  receiveBounce(authorization) {
+    var authStep = authorization.get(&apos;currentStep&apos;);
+    if (!authStep) {
+      //no authorization has been done yet so lets get the authorization url and redirec the user there
+      return this._authorizeParams(authorization)
+        .then((params) =&gt; {
+          return this._auth.getAuthorizeUrl(params);
+        }).then((authUri) =&gt; {
+          //set the step so we know to get the access token when they return
+          return authorization.set(&apos;currentStep&apos;, &apos;authorization&apos;)
+            .then(() =&gt; {
+              //redirect the user
+              return authorization.redirect(authUri);
+            })
+        });
+    } else if (authStep === &apos;authorization&apos;) {
+      return this._accessParams(authorization)
+        .then((params) =&gt; {
+          return this._auth.getOAuthAccessTokenAsync(authorization.query.code, params);
+        }).then((results) =&gt; {
+          return authorization.set(&apos;AccessToken&apos;, results[0])
+            .then(() =&gt; {
+              return authorization.set(&apos;RefreshToken&apos;, results[1]);
+            }).then(() =&gt; {
+              return this._processResults(results[2]);
+            });
+        });
+    }
+    //default just mark as done
+    return authorization.done();
+  }
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.2.6)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
