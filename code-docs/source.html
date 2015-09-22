@@ -17,7 +17,7 @@
   <a href="identifiers.html">Identifier</a>
   <a href="source.html">Source</a>
   <a href="test.html" data-ice="testLink">Test</a>
-  <a data-ice="repoURL" href="https://github.com/hoist/hoist-connector-github.git" class="repo-url-github">Repository</a>
+  <a data-ice="repoURL" href="https://github.com/hoist/oauth-connector.git" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -31,7 +31,17 @@
   <h2>Class</h2>
   <ul>
     
-  <li data-ice="classDoc"><span><a href="class/src/oauth2_connector.js~OAuth2Connector.html">OAuth2Connector</a></span></li>
+  <li data-ice="classDoc"><span><a href="class/src/oauth2_connector.js~OAuth2ConnectorBase.html">OAuth2ConnectorBase</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/oauth_connector.js~OAuthConnectorBase.html">OAuthConnectorBase</a></span></li>
+</ul>
+</div>
+
+<div data-ice="interfaceWrap">
+  <h2>Interface</h2>
+  <ul>
+    
+  <li data-ice="interfaceDoc"><span><a href="class/src/authorisation_store.js~AuthorizationStore.html">AuthorizationStore</a></span></li>
+<li data-ice="interfaceDoc"><span><a href="class/src/connector_interface.js~ConnectorInterface.html">ConnectorInterface</a></span></li>
 </ul>
 </div>
 
@@ -42,11 +52,9 @@
 
 
 
-
-
 </nav>
 
-<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">6/6</span></h1>
+<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">18/20</span></h1>
 
 <table class="files-summary" data-ice="files" data-use-coverage="true">
   <thead>
@@ -62,12 +70,44 @@
   <tbody>
     
   <tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/src/authorisation_store.js.html">src/authorisation_store.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/src/authorisation_store.js~AuthorizationStore.html">AuthorizationStore</a></span></td>
+      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">7/7</span></td>
+      <td style="display: none;" data-ice="size">1307 byte</td>
+      <td style="display: none;" data-ice="lines">60</td>
+      <td style="display: none;" data-ice="updated">2015-09-03 00:28:35 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/src/connector_interface.js.html#errorLines=12,20">src/connector_interface.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/src/connector_interface.js~ConnectorInterface.html">ConnectorInterface</a></span></td>
+      <td class="coverage"><span data-ice="coverage">33 %</span><span data-ice="coverageCount" class="coverage-count">1/3</span></td>
+      <td style="display: none;" data-ice="size">447 byte</td>
+      <td style="display: none;" data-ice="lines">23</td>
+      <td style="display: none;" data-ice="updated">2015-09-03 00:28:43 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/src/index.js.html">src/index.js</a></span></td>
+      <td data-ice="identifier" class="identifiers">-</td>
+      <td class="coverage"><span data-ice="coverage">-</span></td>
+      <td style="display: none;" data-ice="size">182 byte</td>
+      <td style="display: none;" data-ice="lines">7</td>
+      <td style="display: none;" data-ice="updated">2015-09-03 00:00:41 (UTC)</td>
+    </tr>
+<tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/src/oauth2_connector.js.html">src/oauth2_connector.js</a></span></td>
-      <td data-ice="identifier" class="identifiers"><span><a href="class/src/oauth2_connector.js~OAuth2Connector.html">OAuth2Connector</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/src/oauth2_connector.js~OAuth2ConnectorBase.html">OAuth2ConnectorBase</a></span></td>
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">6/6</span></td>
-      <td style="display: none;" data-ice="size">4242 byte</td>
+      <td style="display: none;" data-ice="size">4246 byte</td>
       <td style="display: none;" data-ice="lines">113</td>
-      <td style="display: none;" data-ice="updated">2015-09-02 23:16:49 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2015-09-03 00:00:26 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/src/oauth_connector.js.html">src/oauth_connector.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/src/oauth_connector.js~OAuthConnectorBase.html">OAuthConnectorBase</a></span></td>
+      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">4/4</span></td>
+      <td style="display: none;" data-ice="size">4345 byte</td>
+      <td style="display: none;" data-ice="lines">128</td>
+      <td style="display: none;" data-ice="updated">2015-09-03 02:41:57 (UTC)</td>
     </tr>
 </tbody>
 </table>

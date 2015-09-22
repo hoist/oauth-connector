@@ -1,19 +1,19 @@
 {
-  "name": "@hoist/auth2-connector",
+  "name": "@hoist/oauth-connector",
   "version": "1.0.0",
   "description": "Base OAuth2 Connector classes",
-  "main": "./lib/oauth2_connector.js",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "gulp test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hoist/hoist-connector-github.git"
+    "url": "https://github.com/hoist/oauth-connector.git"
   },
   "author": "Hoist Apps Ltd",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hoist/hoist-connector-github/issues"
+    "url": "https://github.com/hoist/oauth-connector/issues"
   },
   "devDependencies": {
     "@hoist/model": "^1.1.0",
@@ -39,9 +39,11 @@
     "sinon": "^1.16.1",
     "sinon-chai": "^2.8.0"
   },
-  "homepage": "https://github.com/hoist/hoist-connector-github",
+  "homepage": "https://github.com/hoist/oauth-connector",
   "dependencies": {
+    "@hoist/logger": "^1.0.5",
     "bluebird": "^2.9.34",
-    "config": "^1.16.0"
+    "config": "^1.16.0",
+    "lodash": "^3.10.1"
   }
 }

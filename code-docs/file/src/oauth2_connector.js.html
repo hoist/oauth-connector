@@ -17,7 +17,7 @@
   <a href="identifiers.html">Identifier</a>
   <a href="source.html">Source</a>
   <a href="test.html" data-ice="testLink">Test</a>
-  <a data-ice="repoURL" href="https://github.com/hoist/hoist-connector-github.git" class="repo-url-github">Repository</a>
+  <a data-ice="repoURL" href="https://github.com/hoist/oauth-connector.git" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -31,11 +31,19 @@
   <h2>Class</h2>
   <ul>
     
-  <li data-ice="classDoc"><span><a href="class/src/oauth2_connector.js~OAuth2Connector.html">OAuth2Connector</a></span></li>
+  <li data-ice="classDoc"><span><a href="class/src/oauth2_connector.js~OAuth2ConnectorBase.html">OAuth2ConnectorBase</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/oauth_connector.js~OAuthConnectorBase.html">OAuthConnectorBase</a></span></li>
 </ul>
 </div>
 
-
+<div data-ice="interfaceWrap">
+  <h2>Interface</h2>
+  <ul>
+    
+  <li data-ice="interfaceDoc"><span><a href="class/src/authorisation_store.js~AuthorizationStore.html">AuthorizationStore</a></span></li>
+<li data-ice="interfaceDoc"><span><a href="class/src/connector_interface.js~ConnectorInterface.html">ConnectorInterface</a></span></li>
+</ul>
+</div>
 
 
 
@@ -60,7 +68,7 @@ from &apos;@hoist/oauth&apos;;
  * The base OAuth2 Connector class used for Hoist Connectors to implement OAuth2 flows
  * @implements {ConnectorInterface}
  */
-export default class OAuth2Connector {
+export default class OAuth2ConnectorBase {
 
   /**
    * @protected

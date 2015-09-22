@@ -1,8 +1,26 @@
 window.esdocSearchIndex = [
   [
-    "@hoist/auth2-connector/src/oauth2_connector.js~oauth2connector",
-    "class/src/oauth2_connector.js~OAuth2Connector.html",
-    "<span>OAuth2Connector</span> <span class=\"search-result-import-path\">@hoist/auth2-connector/src/oauth2_connector.js</span>",
+    "@hoist/oauth-connector/src/authorisation_store.js~authorizationstore",
+    "class/src/authorisation_store.js~AuthorizationStore.html",
+    "<span>AuthorizationStore</span> <span class=\"search-result-import-path\">@hoist/oauth-connector/src/authorisation_store.js</span>",
+    "class"
+  ],
+  [
+    "@hoist/oauth-connector/src/connector_interface.js~connectorinterface",
+    "class/src/connector_interface.js~ConnectorInterface.html",
+    "<span>ConnectorInterface</span> <span class=\"search-result-import-path\">@hoist/oauth-connector/src/connector_interface.js</span>",
+    "class"
+  ],
+  [
+    "@hoist/oauth-connector/src/oauth2_connector.js~oauth2connectorbase",
+    "class/src/oauth2_connector.js~OAuth2ConnectorBase.html",
+    "<span>OAuth2ConnectorBase</span> <span class=\"search-result-import-path\">@hoist/oauth-connector/src/oauth2_connector.js</span>",
+    "class"
+  ],
+  [
+    "@hoist/oauth-connector/src/oauth_connector.js~oauthconnectorbase",
+    "class/src/oauth_connector.js~OAuthConnectorBase.html",
+    "<span>OAuthConnectorBase</span> <span class=\"search-result-import-path\">@hoist/oauth-connector/src/oauth_connector.js</span>",
     "class"
   ],
   [
@@ -330,39 +348,129 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
+    "src/authorisation_store.js",
+    "file/src/authorisation_store.js.html",
+    "src/authorisation_store.js",
+    "file"
+  ],
+  [
+    "src/authorisation_store.js~authorizationstore#delete",
+    "class/src/authorisation_store.js~AuthorizationStore.html#instance-method-delete",
+    "src/authorisation_store.js~AuthorizationStore#delete",
+    "method"
+  ],
+  [
+    "src/authorisation_store.js~authorizationstore#done",
+    "class/src/authorisation_store.js~AuthorizationStore.html#instance-method-done",
+    "src/authorisation_store.js~AuthorizationStore#done",
+    "method"
+  ],
+  [
+    "src/authorisation_store.js~authorizationstore#get",
+    "class/src/authorisation_store.js~AuthorizationStore.html#instance-method-get",
+    "src/authorisation_store.js~AuthorizationStore#get",
+    "method"
+  ],
+  [
+    "src/authorisation_store.js~authorizationstore#query",
+    "class/src/authorisation_store.js~AuthorizationStore.html#instance-get-query",
+    "src/authorisation_store.js~AuthorizationStore#query",
+    "member"
+  ],
+  [
+    "src/authorisation_store.js~authorizationstore#redirect",
+    "class/src/authorisation_store.js~AuthorizationStore.html#instance-method-redirect",
+    "src/authorisation_store.js~AuthorizationStore#redirect",
+    "method"
+  ],
+  [
+    "src/authorisation_store.js~authorizationstore#set",
+    "class/src/authorisation_store.js~AuthorizationStore.html#instance-method-set",
+    "src/authorisation_store.js~AuthorizationStore#set",
+    "method"
+  ],
+  [
+    "src/connector_interface.js",
+    "file/src/connector_interface.js.html",
+    "src/connector_interface.js",
+    "file"
+  ],
+  [
+    "src/connector_interface.js~connectorinterface#authorize",
+    "class/src/connector_interface.js~ConnectorInterface.html#instance-method-authorize",
+    "src/connector_interface.js~ConnectorInterface#authorize",
+    "method"
+  ],
+  [
+    "src/connector_interface.js~connectorinterface#recievebounce",
+    "class/src/connector_interface.js~ConnectorInterface.html#instance-method-recieveBounce",
+    "src/connector_interface.js~ConnectorInterface#recieveBounce",
+    "method"
+  ],
+  [
+    "src/index.js",
+    "file/src/index.js.html",
+    "src/index.js",
+    "file"
+  ],
+  [
     "src/oauth2_connector.js",
     "file/src/oauth2_connector.js.html",
     "src/oauth2_connector.js",
     "file"
   ],
   [
-    "src/oauth2_connector.js~oauth2connector#_accessparams",
-    "class/src/oauth2_connector.js~OAuth2Connector.html#instance-method-_accessParams",
-    "src/oauth2_connector.js~OAuth2Connector#_accessParams",
+    "src/oauth2_connector.js~oauth2connectorbase#_accessparams",
+    "class/src/oauth2_connector.js~OAuth2ConnectorBase.html#instance-method-_accessParams",
+    "src/oauth2_connector.js~OAuth2ConnectorBase#_accessParams",
     "method"
   ],
   [
-    "src/oauth2_connector.js~oauth2connector#_authorizeparams",
-    "class/src/oauth2_connector.js~OAuth2Connector.html#instance-method-_authorizeParams",
-    "src/oauth2_connector.js~OAuth2Connector#_authorizeParams",
+    "src/oauth2_connector.js~oauth2connectorbase#_authorizeparams",
+    "class/src/oauth2_connector.js~OAuth2ConnectorBase.html#instance-method-_authorizeParams",
+    "src/oauth2_connector.js~OAuth2ConnectorBase#_authorizeParams",
     "method"
   ],
   [
-    "src/oauth2_connector.js~oauth2connector#authorize",
-    "class/src/oauth2_connector.js~OAuth2Connector.html#instance-method-authorize",
-    "src/oauth2_connector.js~OAuth2Connector#authorize",
+    "src/oauth2_connector.js~oauth2connectorbase#authorize",
+    "class/src/oauth2_connector.js~OAuth2ConnectorBase.html#instance-method-authorize",
+    "src/oauth2_connector.js~OAuth2ConnectorBase#authorize",
     "method"
   ],
   [
-    "src/oauth2_connector.js~oauth2connector#constructor",
-    "class/src/oauth2_connector.js~OAuth2Connector.html#instance-constructor-constructor",
-    "src/oauth2_connector.js~OAuth2Connector#constructor",
+    "src/oauth2_connector.js~oauth2connectorbase#constructor",
+    "class/src/oauth2_connector.js~OAuth2ConnectorBase.html#instance-constructor-constructor",
+    "src/oauth2_connector.js~OAuth2ConnectorBase#constructor",
     "method"
   ],
   [
-    "src/oauth2_connector.js~oauth2connector#receivebounce",
-    "class/src/oauth2_connector.js~OAuth2Connector.html#instance-method-receiveBounce",
-    "src/oauth2_connector.js~OAuth2Connector#receiveBounce",
+    "src/oauth2_connector.js~oauth2connectorbase#receivebounce",
+    "class/src/oauth2_connector.js~OAuth2ConnectorBase.html#instance-method-receiveBounce",
+    "src/oauth2_connector.js~OAuth2ConnectorBase#receiveBounce",
+    "method"
+  ],
+  [
+    "src/oauth_connector.js",
+    "file/src/oauth_connector.js.html",
+    "src/oauth_connector.js",
+    "file"
+  ],
+  [
+    "src/oauth_connector.js~oauthconnectorbase#authorize",
+    "class/src/oauth_connector.js~OAuthConnectorBase.html#instance-method-authorize",
+    "src/oauth_connector.js~OAuthConnectorBase#authorize",
+    "method"
+  ],
+  [
+    "src/oauth_connector.js~oauthconnectorbase#constructor",
+    "class/src/oauth_connector.js~OAuthConnectorBase.html#instance-constructor-constructor",
+    "src/oauth_connector.js~OAuthConnectorBase#constructor",
+    "method"
+  ],
+  [
+    "src/oauth_connector.js~oauthconnectorbase#receivebounce",
+    "class/src/oauth_connector.js~OAuthConnectorBase.html#instance-method-receiveBounce",
+    "src/oauth_connector.js~OAuthConnectorBase#receiveBounce",
     "method"
   ]
 ]

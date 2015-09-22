@@ -11,7 +11,7 @@ from '@hoist/oauth';
  * The base OAuth2 Connector class used for Hoist Connectors to implement OAuth2 flows
  * @implements {ConnectorInterface}
  */
-export default class OAuth2Connector {
+export default class OAuth2ConnectorBase {
 
   /**
    * @protected

@@ -3,25 +3,342 @@
     "kind": "file",
     "static": true,
     "variation": null,
+    "name": "src/authorisation_store.js",
+    "memberof": null,
+    "longname": "src/authorisation_store.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "content": "/**\n * @interface\n */\nexport default class AuthorizationStore {\n\n  /**\n   * the query params the user is currently showing\n   * @type {object}\n   */\n  get query() {};\n  /**\n   * sets and saves a value against the store\n   * @param {string} key - the key to store the value against\n   * @param {object} value - the value to store\n   * @returns {Promise} - a promise to have saved the value\n   */\n  set(key, value) {\n\n  }\n\n  /**\n   * gets a value saved against the specified key\n   *\n   * @param {string} key - the key the value is saved against\n   * @returns {object} - the value at the specified key or null\n   */\n  get(key) {\n\n  }\n\n  /**\n   * removes any value saved against the specified key permanently\n   * @param {string} key - the key the value is saved against\n   * @returns {Promise} - a promise to have deleted the value from the store\n   */\n  delete(key) {\n\n  }\n\n  /**\n   * mark the current authorization flow as complete i.e. after having swapped all access tokens and request tokens\n   * @returns {undefined}\n   */\n  done() {\n\n  }\n\n\n  /**\n   * redirect the user to the specified uri\n   * the user is no longer present after this call so should only happen at the end of a flow\n   * @param {string} uri - the uri to redirect the user to\n   * @returns {undefined}\n   */\n  redirect(uri) {\n\n  }\n\n\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "AuthorizationStore",
+    "memberof": "src/authorisation_store.js",
+    "longname": "src/authorisation_store.js~AuthorizationStore",
+    "access": null,
+    "export": true,
+    "importPath": "@hoist/oauth-connector/src/authorisation_store.js",
+    "importStyle": "AuthorizationStore",
+    "description": null,
+    "lineNumber": 4,
+    "interface": true
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "query",
+    "memberof": "src/authorisation_store.js~AuthorizationStore",
+    "longname": "src/authorisation_store.js~AuthorizationStore#query",
+    "access": null,
+    "description": "the query params the user is currently showing",
+    "lineNumber": 10,
+    "type": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": null
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "set",
+    "memberof": "src/authorisation_store.js~AuthorizationStore",
+    "longname": "src/authorisation_store.js~AuthorizationStore#set",
+    "access": null,
+    "description": "sets and saves a value against the store",
+    "lineNumber": 17,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Promise} - a promise to have saved the value"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "key",
+        "description": "the key to store the value against"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "the value to store"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": "a promise to have saved the value"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "get",
+    "memberof": "src/authorisation_store.js~AuthorizationStore",
+    "longname": "src/authorisation_store.js~AuthorizationStore#get",
+    "access": null,
+    "description": "gets a value saved against the specified key",
+    "lineNumber": 27,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{object} - the value at the specified key or null"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "key",
+        "description": "the key the value is saved against"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": "the value at the specified key or null"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "delete",
+    "memberof": "src/authorisation_store.js~AuthorizationStore",
+    "longname": "src/authorisation_store.js~AuthorizationStore#delete",
+    "access": null,
+    "description": "removes any value saved against the specified key permanently",
+    "lineNumber": 36,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Promise} - a promise to have deleted the value from the store"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "key",
+        "description": "the key the value is saved against"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": "a promise to have deleted the value from the store"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "done",
+    "memberof": "src/authorisation_store.js~AuthorizationStore",
+    "longname": "src/authorisation_store.js~AuthorizationStore#done",
+    "access": null,
+    "description": "mark the current authorization flow as complete i.e. after having swapped all access tokens and request tokens",
+    "lineNumber": 44,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{undefined}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "undefined"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "redirect",
+    "memberof": "src/authorisation_store.js~AuthorizationStore",
+    "longname": "src/authorisation_store.js~AuthorizationStore#redirect",
+    "access": null,
+    "description": "redirect the user to the specified uri\nthe user is no longer present after this call so should only happen at the end of a flow",
+    "lineNumber": 55,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{undefined}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "uri",
+        "description": "the uri to redirect the user to"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "undefined"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/connector_interface.js",
+    "memberof": null,
+    "longname": "src/connector_interface.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "'use strict';\n\n/**\n * @interface\n */\nexport default class ConnectorInterface {\n\n  /*\n   * initialize this connector with existing authorization information\n   * @param {<AuthorizationStore>} authorization - the users authorization\n   */\n  authorize(authorization) {\n\n  }\n\n  /*\n   * control a user through the authorization flow\n   * @param {AuthorizationStore} authorization - the users authorization\n   */\n  recieveBounce(authorization) {\n\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "ConnectorInterface",
+    "memberof": "src/connector_interface.js",
+    "longname": "src/connector_interface.js~ConnectorInterface",
+    "access": null,
+    "export": true,
+    "importPath": "@hoist/oauth-connector/src/connector_interface.js",
+    "importStyle": "ConnectorInterface",
+    "description": null,
+    "lineNumber": 6,
+    "interface": true
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "authorize",
+    "memberof": "src/connector_interface.js~ConnectorInterface",
+    "longname": "src/connector_interface.js~ConnectorInterface#authorize",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "params": [
+      {
+        "name": "authorization",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "recieveBounce",
+    "memberof": "src/connector_interface.js~ConnectorInterface",
+    "longname": "src/connector_interface.js~ConnectorInterface#recieveBounce",
+    "access": null,
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "params": [
+      {
+        "name": "authorization",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/index.js",
+    "memberof": null,
+    "longname": "src/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "'use strict';\nimport OAuth2ConnectorBase from './oauth2_connector';\nimport OAuthConnectorBase from './oauth_connector'\nexport default {\n  OAuthConnectorBase,\n  OAuth2ConnectorBase\n}\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
     "name": "src/oauth2_connector.js",
     "memberof": null,
     "longname": "src/oauth2_connector.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "'use strict';\nimport Bluebird from 'bluebird';\nimport config from 'config';\nimport {\n  OAuth2\n}\nfrom '@hoist/oauth';\n\n/**\n * @protected\n * The base OAuth2 Connector class used for Hoist Connectors to implement OAuth2 flows\n * @implements {ConnectorInterface}\n */\nexport default class OAuth2Connector {\n\n  /**\n   * @protected\n   * create a new OAuth2Connector\n   * @param {object} configuration - the configuration details for this connector\n   * @param {string} configuration.clientId - the OAuth2 client id\n   * @param {string} configuration.clientSecret - the OAuth2 client secret\n   * @param {string} configuration.baseSite - the base uri to use for authorization calls\n   * @param {string} [configuration.authorizationPath=/oauth/authorize] - the path to send users to authorise access\n   * @param {string} [configuration.accessTokenPath=/oauth/access_token] - the path to use to retrieve access tokens\n   * @param {object} [configuration.customHeaders] - any custom headers to send\n   */\n  constructor(configuration) {\n    this._auth = Bluebird.promisifyAll(new OAuth2(configuration.clientId, configuration.clientSecret, configuration.baseSite, configuration.authorizationPath, configuration.accessTokenPath, configuration.customHeaders));\n  }\n\n  /**\n   * Populate any extra params needed to grant access\n   * @protected\n   * @param {AuthorizationStore} authorization - the users authorisation store\n   * @returns {Promise<object>} - an object containing key value pairs to send with the client to the authorization url\n   */\n  _authorizeParams(authorization) {\n    return Promise.resolve({\n      redirect_uri: `https://${config.get('Hoist.domains.bouncer')}/bounce`\n    });\n  }\n\n  /**\n   * Populate any extra params needed to request the access token\n   * @protected\n   * @param {AuthorizationStore} authorization - the users authorisation store\n   * @returns {Promise<object>} - an object containing key value pairs to send with the access token request\n   */\n  _accessParams(authorization) {\n    return Promise.resolve();\n  }\n\n  /**\n   * perform an authorized request\n   * @param {string} method - the HTTP method to call\n   * @param {string} requestUri - the uri of the request to call\n   * @param {object} body - the data to send\n   * @param {string} contentType - the contentType header\n   */\n  _performRequest(method, requestUri, body, contentType) {\n    let headers = {\n      'Content-Type': contentType,\n      'User-Agent': 'Hoist',\n      'Authorization': this._auth.buildAuthHeader(this._accessToken)\n    };\n    return this._auth._requestAsync(method, requestUri, headers, this._accessToken);\n  }\n\n  /**\n   * authorize the oauth connection with existing parameters\n   * @param {<AuthorizationStore>} authorization - the users authorization\n   */\n  authorize(authorization) {\n    this._accessToken = authorization.get('AccessToken');\n    this._refreshToken = authorization.get('RefreshToken');\n  }\n\n  /**\n   * @param {AuthorizationStore} authorization - the users authorization\n   */\n  receiveBounce(authorization) {\n    var authStep = authorization.get('currentStep');\n    if (!authStep) {\n      //no authorization has been done yet so lets get the authorization url and redirec the user there\n      return this._authorizeParams(authorization)\n        .then((params) => {\n          return this._auth.getAuthorizeUrl(params);\n        }).then((authUri) => {\n          //set the step so we know to get the access token when they return\n          return authorization.set('currentStep', 'authorization')\n            .then(() => {\n              //redirect the user\n              return authorization.redirect(authUri);\n            })\n        });\n    } else if (authStep === 'authorization') {\n      return this._accessParams(authorization)\n        .then((params) => {\n          return this._auth.getOAuthAccessTokenAsync(authorization.query.code, params);\n        }).then((results) => {\n          return authorization.set('AccessToken', results[0])\n            .then(() => {\n              return authorization.set('RefreshToken', results[1]);\n            }).then(() => {\n              return this._processResults(results[2]);\n            });\n        });\n    }\n    //default just mark as done\n    return authorization.done();\n  }\n\n}\n"
+    "content": "'use strict';\nimport Bluebird from 'bluebird';\nimport config from 'config';\nimport {\n  OAuth2\n}\nfrom '@hoist/oauth';\n\n/**\n * @protected\n * The base OAuth2 Connector class used for Hoist Connectors to implement OAuth2 flows\n * @implements {ConnectorInterface}\n */\nexport default class OAuth2ConnectorBase {\n\n  /**\n   * @protected\n   * create a new OAuth2Connector\n   * @param {object} configuration - the configuration details for this connector\n   * @param {string} configuration.clientId - the OAuth2 client id\n   * @param {string} configuration.clientSecret - the OAuth2 client secret\n   * @param {string} configuration.baseSite - the base uri to use for authorization calls\n   * @param {string} [configuration.authorizationPath=/oauth/authorize] - the path to send users to authorise access\n   * @param {string} [configuration.accessTokenPath=/oauth/access_token] - the path to use to retrieve access tokens\n   * @param {object} [configuration.customHeaders] - any custom headers to send\n   */\n  constructor(configuration) {\n    this._auth = Bluebird.promisifyAll(new OAuth2(configuration.clientId, configuration.clientSecret, configuration.baseSite, configuration.authorizationPath, configuration.accessTokenPath, configuration.customHeaders));\n  }\n\n  /**\n   * Populate any extra params needed to grant access\n   * @protected\n   * @param {AuthorizationStore} authorization - the users authorisation store\n   * @returns {Promise<object>} - an object containing key value pairs to send with the client to the authorization url\n   */\n  _authorizeParams(authorization) {\n    return Promise.resolve({\n      redirect_uri: `https://${config.get('Hoist.domains.bouncer')}/bounce`\n    });\n  }\n\n  /**\n   * Populate any extra params needed to request the access token\n   * @protected\n   * @param {AuthorizationStore} authorization - the users authorisation store\n   * @returns {Promise<object>} - an object containing key value pairs to send with the access token request\n   */\n  _accessParams(authorization) {\n    return Promise.resolve();\n  }\n\n  /**\n   * perform an authorized request\n   * @param {string} method - the HTTP method to call\n   * @param {string} requestUri - the uri of the request to call\n   * @param {object} body - the data to send\n   * @param {string} contentType - the contentType header\n   */\n  _performRequest(method, requestUri, body, contentType) {\n    let headers = {\n      'Content-Type': contentType,\n      'User-Agent': 'Hoist',\n      'Authorization': this._auth.buildAuthHeader(this._accessToken)\n    };\n    return this._auth._requestAsync(method, requestUri, headers, this._accessToken);\n  }\n\n  /**\n   * authorize the oauth connection with existing parameters\n   * @param {<AuthorizationStore>} authorization - the users authorization\n   */\n  authorize(authorization) {\n    this._accessToken = authorization.get('AccessToken');\n    this._refreshToken = authorization.get('RefreshToken');\n  }\n\n  /**\n   * @param {AuthorizationStore} authorization - the users authorization\n   */\n  receiveBounce(authorization) {\n    var authStep = authorization.get('currentStep');\n    if (!authStep) {\n      //no authorization has been done yet so lets get the authorization url and redirec the user there\n      return this._authorizeParams(authorization)\n        .then((params) => {\n          return this._auth.getAuthorizeUrl(params);\n        }).then((authUri) => {\n          //set the step so we know to get the access token when they return\n          return authorization.set('currentStep', 'authorization')\n            .then(() => {\n              //redirect the user\n              return authorization.redirect(authUri);\n            })\n        });\n    } else if (authStep === 'authorization') {\n      return this._accessParams(authorization)\n        .then((params) => {\n          return this._auth.getOAuthAccessTokenAsync(authorization.query.code, params);\n        }).then((results) => {\n          return authorization.set('AccessToken', results[0])\n            .then(() => {\n              return authorization.set('RefreshToken', results[1]);\n            }).then(() => {\n              return this._processResults(results[2]);\n            });\n        });\n    }\n    //default just mark as done\n    return authorization.done();\n  }\n\n}\n"
   },
   {
     "kind": "class",
     "static": true,
     "variation": null,
-    "name": "OAuth2Connector",
+    "name": "OAuth2ConnectorBase",
     "memberof": "src/oauth2_connector.js",
-    "longname": "src/oauth2_connector.js~OAuth2Connector",
+    "longname": "src/oauth2_connector.js~OAuth2ConnectorBase",
     "access": "protected",
     "export": true,
-    "importPath": "@hoist/auth2-connector/src/oauth2_connector.js",
-    "importStyle": "OAuth2Connector",
+    "importPath": "@hoist/oauth-connector/src/oauth2_connector.js",
+    "importStyle": "OAuth2ConnectorBase",
     "description": null,
     "lineNumber": 14,
     "interface": false,
@@ -34,8 +351,8 @@
     "static": false,
     "variation": null,
     "name": "constructor",
-    "memberof": "src/oauth2_connector.js~OAuth2Connector",
-    "longname": "src/oauth2_connector.js~OAuth2Connector#constructor",
+    "memberof": "src/oauth2_connector.js~OAuth2ConnectorBase",
+    "longname": "src/oauth2_connector.js~OAuth2ConnectorBase#constructor",
     "access": "protected",
     "description": null,
     "lineNumber": 27,
@@ -122,8 +439,8 @@
     "static": false,
     "variation": null,
     "name": "_auth",
-    "memberof": "src/oauth2_connector.js~OAuth2Connector",
-    "longname": "src/oauth2_connector.js~OAuth2Connector#_auth",
+    "memberof": "src/oauth2_connector.js~OAuth2ConnectorBase",
+    "longname": "src/oauth2_connector.js~OAuth2ConnectorBase#_auth",
     "access": null,
     "description": null,
     "lineNumber": 28,
@@ -139,8 +456,8 @@
     "static": false,
     "variation": null,
     "name": "_authorizeParams",
-    "memberof": "src/oauth2_connector.js~OAuth2Connector",
-    "longname": "src/oauth2_connector.js~OAuth2Connector#_authorizeParams",
+    "memberof": "src/oauth2_connector.js~OAuth2ConnectorBase",
+    "longname": "src/oauth2_connector.js~OAuth2ConnectorBase#_authorizeParams",
     "access": "protected",
     "description": "Populate any extra params needed to grant access",
     "lineNumber": 37,
@@ -177,8 +494,8 @@
     "static": false,
     "variation": null,
     "name": "_accessParams",
-    "memberof": "src/oauth2_connector.js~OAuth2Connector",
-    "longname": "src/oauth2_connector.js~OAuth2Connector#_accessParams",
+    "memberof": "src/oauth2_connector.js~OAuth2ConnectorBase",
+    "longname": "src/oauth2_connector.js~OAuth2ConnectorBase#_accessParams",
     "access": "protected",
     "description": "Populate any extra params needed to request the access token",
     "lineNumber": 49,
@@ -215,8 +532,8 @@
     "static": false,
     "variation": null,
     "name": "_performRequest",
-    "memberof": "src/oauth2_connector.js~OAuth2Connector",
-    "longname": "src/oauth2_connector.js~OAuth2Connector#_performRequest",
+    "memberof": "src/oauth2_connector.js~OAuth2ConnectorBase",
+    "longname": "src/oauth2_connector.js~OAuth2ConnectorBase#_performRequest",
     "access": null,
     "description": "perform an authorized request",
     "lineNumber": 60,
@@ -274,8 +591,8 @@
     "static": false,
     "variation": null,
     "name": "authorize",
-    "memberof": "src/oauth2_connector.js~OAuth2Connector",
-    "longname": "src/oauth2_connector.js~OAuth2Connector#authorize",
+    "memberof": "src/oauth2_connector.js~OAuth2ConnectorBase",
+    "longname": "src/oauth2_connector.js~OAuth2ConnectorBase#authorize",
     "access": null,
     "description": "authorize the oauth connection with existing parameters",
     "lineNumber": 73,
@@ -298,8 +615,8 @@
     "static": false,
     "variation": null,
     "name": "_accessToken",
-    "memberof": "src/oauth2_connector.js~OAuth2Connector",
-    "longname": "src/oauth2_connector.js~OAuth2Connector#_accessToken",
+    "memberof": "src/oauth2_connector.js~OAuth2ConnectorBase",
+    "longname": "src/oauth2_connector.js~OAuth2ConnectorBase#_accessToken",
     "access": null,
     "description": null,
     "lineNumber": 74,
@@ -315,8 +632,8 @@
     "static": false,
     "variation": null,
     "name": "_refreshToken",
-    "memberof": "src/oauth2_connector.js~OAuth2Connector",
-    "longname": "src/oauth2_connector.js~OAuth2Connector#_refreshToken",
+    "memberof": "src/oauth2_connector.js~OAuth2ConnectorBase",
+    "longname": "src/oauth2_connector.js~OAuth2ConnectorBase#_refreshToken",
     "access": null,
     "description": null,
     "lineNumber": 75,
@@ -332,11 +649,336 @@
     "static": false,
     "variation": null,
     "name": "receiveBounce",
-    "memberof": "src/oauth2_connector.js~OAuth2Connector",
-    "longname": "src/oauth2_connector.js~OAuth2Connector#receiveBounce",
+    "memberof": "src/oauth2_connector.js~OAuth2ConnectorBase",
+    "longname": "src/oauth2_connector.js~OAuth2ConnectorBase#receiveBounce",
     "access": null,
     "description": null,
     "lineNumber": 81,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "AuthorizationStore"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "authorization",
+        "description": "the users authorization"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/oauth_connector.js",
+    "memberof": null,
+    "longname": "src/oauth_connector.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "'use strict';\nimport Bluebird from 'bluebird';\nimport config from 'config';\nimport url from 'url';\nimport {\n  clone\n}\nfrom 'lodash';\nimport {\n  OAuth\n}\nfrom '@hoist/oauth';\nimport logger from '@hoist/logger';\n\n/**\n * @protected\n * The base OAuth2 Connector class used for Hoist Connectors to implement OAuth2 flows\n * @implements {ConnectorInterface}\n */\nexport default class OAuthConnectorBase {\n\n  /**\n   * @protected\n   * create a new OAuth2Connector\n   * @param {object} configuration - the configuration details for this connector\n   * @param {string} configuration.consumerKey - the OAuth consumer key\n   * @param {string} configuration.consumerSecret - the OAuth consumer secret\n   * @param {string} configuration.requestTokenUri - the uri to use for request token calls\n   * @param {string} configuration.accessTokenUri - the uri to use for access token calls\n   * @param {string} configuration.authorizationUri - the uri to send users to authorise access\n   * @param {object} [configuration.oauthVersion=1.0A] - the version of OAuth to use\n   * @param {object} [configuration.signingMethod=HMAC-SHA1] - the signing method to use\n   */\n  constructor(configuration) {\n    this._logger = logger.child({\n      cls: this.constructor.name\n    });\n    this._configuration = configuration;\n    this._configuration.authorizationUri = url.parse(this._configuration.authorizationUri, true);\n    this._auth = Bluebird.promisifyAll(\n      new OAuth(\n        configuration.requestTokenUri,\n        configuration.accessTokenUri,\n        configuration.consumerKey,\n        configuration.consumerSecret,\n        configuration.oauthVersion || '1.0A',\n        `https://${config.get('Hoist.domains.bouncer')}/bounce`,\n        configuration.signingMethod || 'HMAC-SHA1'\n      ));\n  }\n\n  /**\n   * perform an authorized request\n   * @param {string} method - the HTTP method to call\n   * @param {string} requestUri - the uri of the request to call\n   * @param {string} body - the data to send\n   * @param {string} contentType - the contentType header\n   */\n  _performRequest(method, requestUri, body, contentType) {\n    return this._auth._performSecureRequestAsync(\n      this._accessToken,\n      this._accessTokenSecret,\n      method,\n      requestUri,\n      null,\n      body,\n      contentType)\n  }\n\n  /**\n   * authorize the oauth connection with existing parameters\n   * @param {<AuthorizationStore>} authorization - the users authorization\n   */\n  authorize(authorization) {\n    this._accessToken = authorization.get('AccessToken');\n    this._accessTokenSecret = authorization.get('AccessTokenSecret');\n  }\n\n  /**\n   * @param {AuthorizationStore} authorization - the users authorization\n   */\n  receiveBounce(authorization) {\n    console.log(this);\n    this._logger.info('receiving bounce');\n    var authStep = authorization.get('currentStep');\n    switch (authStep) {\n    case 'RequestToken':\n      //get access token\n      this._logger.info('requesting access token');\n      return this._auth.getOAuthAccessTokenAsync(\n          authorization.get('RequestToken'),\n          authorization.get('RequestTokenSecret'),\n          authorization.query.oauth_verifier)\n        .then((results) => {\n          return Promise.all([\n            authorization.set('AccessToken', results[0]),\n            authorization.set('AccessTokenSecret', results[1]),\n            authorization.set('currentStep', 'AccessToken')\n          ]).then(() => {\n            return authorization.done();\n          });\n        })\n\n      break;\n\n    default:\n      //do request token auth\n      this._logger.info('requesting request token');\n      return this._auth.getOAuthRequestTokenAsync()\n        .then((results) => {\n          return Promise.all([\n            authorization.set('RequestToken', results[0]),\n            authorization.set('RequestTokenSecret', results[1]),\n            authorization.set('currentStep', 'RequestToken')\n          ]).then(() => {\n            this._logger.info('redirecting user');\n            let authorizationUri = this._configuration.authorizationUri;\n            authorizationUri.query = authorizationUri.query || {};\n            authorizationUri.query.oauth_token = results[0];\n            return authorization.redirect(authorizationUri.format())\n          });\n        });\n    }\n    //default just mark as done\n    return authorization.done();\n  }\n\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "OAuthConnectorBase",
+    "memberof": "src/oauth_connector.js",
+    "longname": "src/oauth_connector.js~OAuthConnectorBase",
+    "access": "protected",
+    "export": true,
+    "importPath": "@hoist/oauth-connector/src/oauth_connector.js",
+    "importStyle": "OAuthConnectorBase",
+    "description": null,
+    "lineNumber": 20,
+    "interface": false,
+    "implements": [
+      "ConnectorInterface"
+    ]
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/oauth_connector.js~OAuthConnectorBase",
+    "longname": "src/oauth_connector.js~OAuthConnectorBase#constructor",
+    "access": "protected",
+    "description": null,
+    "lineNumber": 34,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "configuration",
+        "description": "the configuration details for this connector"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "configuration.consumerKey",
+        "description": "the OAuth consumer key"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "configuration.consumerSecret",
+        "description": "the OAuth consumer secret"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "configuration.requestTokenUri",
+        "description": "the uri to use for request token calls"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "configuration.accessTokenUri",
+        "description": "the uri to use for access token calls"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "configuration.authorizationUri",
+        "description": "the uri to send users to authorise access"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "1.0A",
+        "defaultRaw": "1.0A",
+        "name": "configuration.oauthVersion",
+        "description": "the version of OAuth to use"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "HMAC-SHA1",
+        "defaultRaw": "HMAC-SHA1",
+        "name": "configuration.signingMethod",
+        "description": "the signing method to use"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_logger",
+    "memberof": "src/oauth_connector.js~OAuthConnectorBase",
+    "longname": "src/oauth_connector.js~OAuthConnectorBase#_logger",
+    "access": null,
+    "description": null,
+    "lineNumber": 35,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_configuration",
+    "memberof": "src/oauth_connector.js~OAuthConnectorBase",
+    "longname": "src/oauth_connector.js~OAuthConnectorBase#_configuration",
+    "access": null,
+    "description": null,
+    "lineNumber": 38,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_auth",
+    "memberof": "src/oauth_connector.js~OAuthConnectorBase",
+    "longname": "src/oauth_connector.js~OAuthConnectorBase#_auth",
+    "access": null,
+    "description": null,
+    "lineNumber": 40,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "_performRequest",
+    "memberof": "src/oauth_connector.js~OAuthConnectorBase",
+    "longname": "src/oauth_connector.js~OAuthConnectorBase#_performRequest",
+    "access": null,
+    "description": "perform an authorized request",
+    "lineNumber": 59,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "method",
+        "description": "the HTTP method to call"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "requestUri",
+        "description": "the uri of the request to call"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "body",
+        "description": "the data to send"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "contentType",
+        "description": "the contentType header"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "authorize",
+    "memberof": "src/oauth_connector.js~OAuthConnectorBase",
+    "longname": "src/oauth_connector.js~OAuthConnectorBase#authorize",
+    "access": null,
+    "description": "authorize the oauth connection with existing parameters",
+    "lineNumber": 74,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "<AuthorizationStore>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "authorization",
+        "description": "the users authorization"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_accessToken",
+    "memberof": "src/oauth_connector.js~OAuthConnectorBase",
+    "longname": "src/oauth_connector.js~OAuthConnectorBase#_accessToken",
+    "access": null,
+    "description": null,
+    "lineNumber": 75,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_accessTokenSecret",
+    "memberof": "src/oauth_connector.js~OAuthConnectorBase",
+    "longname": "src/oauth_connector.js~OAuthConnectorBase#_accessTokenSecret",
+    "access": null,
+    "description": null,
+    "lineNumber": 76,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "receiveBounce",
+    "memberof": "src/oauth_connector.js~OAuthConnectorBase",
+    "longname": "src/oauth_connector.js~OAuthConnectorBase#receiveBounce",
+    "access": null,
+    "description": null,
+    "lineNumber": 82,
     "params": [
       {
         "nullable": null,
