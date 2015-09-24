@@ -1,6 +1,6 @@
 {
   "name": "@hoist/oauth-connector",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Base OAuth2 Connector classes",
   "main": "./lib/index.js",
   "scripts": {
@@ -42,6 +42,7 @@
   "homepage": "https://github.com/hoist/oauth-connector",
   "dependencies": {
     "@hoist/logger": "^1.0.5",
+    "@hoist/oauth": "^1.0.0",
     "bluebird": "^2.9.34",
     "config": "^1.16.0",
     "lodash": "^3.10.1"

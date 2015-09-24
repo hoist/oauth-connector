@@ -104,6 +104,7 @@ export default class OAuthConnectorBase {
         `https://${config.get(&apos;Hoist.domains.bouncer&apos;)}/bounce`,
         configuration.signingMethod || &apos;HMAC-SHA1&apos;
       ));
+    this._auth._performSecureRequestAsync = Bluebird.promisify(this._auth._performSecureRequest, this._auth)
   }
 
   /**
@@ -137,7 +138,6 @@ export default class OAuthConnectorBase {
    * @param {AuthorizationStore} authorization - the users authorization
    */
   receiveBounce(authorization) {
-    console.log(this);
     this._logger.info(&apos;receiving bounce&apos;);
     var authStep = authorization.get(&apos;currentStep&apos;);
     switch (authStep) {
