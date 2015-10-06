@@ -49,6 +49,9 @@ export default class OAuth2ConnectorBase {
   _accessParams(authorization) {
     return Promise.resolve();
   }
+  _processResults(results) {
+    return Promise.resolve();
+  }
 
   /**
    * perform an authorized request
@@ -103,6 +106,8 @@ export default class OAuth2ConnectorBase {
               return authorization.set('RefreshToken', results[1]);
             }).then(() => {
               return this._processResults(results[2]);
+            }).then(() => {
+              return authorization.done();
             });
         });
     }
