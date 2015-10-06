@@ -26,6 +26,7 @@ export default class OAuth2ConnectorBase {
    */
   constructor(configuration) {
     this._auth = Bluebird.promisifyAll(new OAuth2(configuration.clientId, configuration.clientSecret, configuration.baseSite, configuration.authorizationPath, configuration.accessTokenPath, configuration.customHeaders));
+    this._auth._requestAsync = Bluebird.promisify(this._auth._request, this._auth);
   }
 
   /**
@@ -62,11 +63,11 @@ export default class OAuth2ConnectorBase {
    */
   _performRequest(method, requestUri, body, contentType) {
     let headers = {
-      'Content-Type': contentType,
+      'Content-Type': contentType || 'application/json',
       'User-Agent': 'Hoist',
       'Authorization': this._auth.buildAuthHeader(this._accessToken)
     };
-    return this._auth._requestAsync(method, requestUri, headers, this._accessToken);
+    return this._auth._requestAsync(method, requestUri, headers, body, this._accessToken);
   }
 
   /**
