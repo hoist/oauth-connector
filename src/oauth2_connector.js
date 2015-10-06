@@ -67,6 +67,9 @@ export default class OAuth2ConnectorBase {
       'User-Agent': 'Hoist',
       'Authorization': this._auth.buildAuthHeader(this._accessToken)
     };
+    if (!(typeof (body) === 'string' || body instanceof Buffer)) {
+      body = JSON.stringify(body);
+    }
     return this._auth._requestAsync(method, requestUri, headers, body, this._accessToken);
   }
 
