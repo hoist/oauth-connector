@@ -58,6 +58,9 @@ export default class OAuthConnectorBase {
    * @param {string} contentType - the contentType header
    */
   _performRequest(method, requestUri, body, contentType) {
+    if (!(typeof (body) === 'string' || body instanceof Buffer)) {
+      body = JSON.stringify(body);
+    }
     return this._auth._performSecureRequestAsync(
       this._accessToken,
       this._accessTokenSecret,
