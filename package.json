@@ -1,7 +1,7 @@
 {
   "name": "@hoist/oauth-connector",
   "version": "1.1.1",
-  "description": "Base OAuth2 Connector classes",
+  "description": "Base OAuth Connector classes",
   "main": "./lib/index.js",
   "scripts": {
     "test": "gulp test"
