@@ -81,6 +81,10 @@ export default class OAuthConnectorBase {
       contentType || 'application/json')
   }
 
+  _setupAuthorizationQuery(query) {
+    return query;
+  }
+
   /**
    * authorize the oauth connection with existing parameters
    * @param {<AuthorizationStore>} authorization - the users authorization
@@ -129,7 +133,7 @@ export default class OAuthConnectorBase {
           }).then(() => {
             this._logger.info('redirecting user');
             let authorizationUri = this._configuration.authorizationUri;
-            authorizationUri.query = authorizationUri.query || {};
+            authorizationUri.query = this._setupAuthorizationQuery(authorizationUri.query || {});
             authorizationUri.query.oauth_token = results[0];
             return authorization.redirect(authorizationUri.format())
           });
