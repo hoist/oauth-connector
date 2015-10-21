@@ -709,7 +709,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "'use strict';\nimport Bluebird from 'bluebird';\nimport config from 'config';\nimport url from 'url';\nimport {\n  clone\n}\nfrom 'lodash';\nimport {\n  OAuth\n}\nfrom '@hoist/oauth';\nimport logger from '@hoist/logger';\n\n/**\n * @protected\n * The base OAuth2 Connector class used for Hoist Connectors to implement OAuth2 flows\n * @implements {ConnectorInterface}\n */\nexport default class OAuthConnectorBase {\n\n  /**\n   * @protected\n   * create a new OAuth2Connector\n   * @param {object} configuration - the configuration details for this connector\n   * @param {string} configuration.consumerKey - the OAuth consumer key\n   * @param {string} configuration.consumerSecret - the OAuth consumer secret\n   * @param {string} configuration.requestTokenUri - the uri to use for request token calls\n   * @param {string} configuration.accessTokenUri - the uri to use for access token calls\n   * @param {string} configuration.authorizationUri - the uri to send users to authorise access\n   * @param {object} [configuration.oauthVersion=1.0A] - the version of OAuth to use\n   * @param {object} [configuration.signingMethod=HMAC-SHA1] - the signing method to use\n   */\n  constructor(configuration) {\n    this._logger = logger.child({\n      cls: this.constructor.name\n    });\n    this._configuration = configuration;\n    this._configuration.authorizationUri = url.parse(this._configuration.authorizationUri, true);\n    this._auth = Bluebird.promisifyAll(\n      new OAuth(\n        configuration.requestTokenUri,\n        configuration.accessTokenUri,\n        configuration.consumerKey,\n        configuration.consumerSecret,\n        configuration.oauthVersion || '1.0A',\n        `https://${config.get('Hoist.domains.bouncer')}/bounce`,\n        configuration.signingMethod || 'HMAC-SHA1'\n      ));\n    this._auth._performSecureRequestAsync = Bluebird.promisify(this._auth._performSecureRequest, this._auth)\n  }\n\n  /**\n   * perform an authorized request\n   * @param {string} method - the HTTP method to call\n   * @param {string} requestUri - the uri of the request to call\n   * @param {string} body - the data to send\n   * @param {string} contentType - the contentType header\n   */\n  _performRequest(method, requestUri, body, contentType) {\n    if (!(typeof (body) === 'string' || body instanceof Buffer)) {\n      body = JSON.stringify(body);\n    }\n    return this._auth._performSecureRequestAsync(\n      this._accessToken,\n      this._accessTokenSecret,\n      method,\n      requestUri,\n      null,\n      body,\n      contentType)\n  }\n\n  /**\n   * authorize the oauth connection with existing parameters\n   * @param {<AuthorizationStore>} authorization - the users authorization\n   */\n  authorize(authorization) {\n    this._accessToken = authorization.get('AccessToken');\n    this._accessTokenSecret = authorization.get('AccessTokenSecret');\n  }\n\n  /**\n   * @param {AuthorizationStore} authorization - the users authorization\n   */\n  receiveBounce(authorization) {\n    this._logger.info('receiving bounce');\n    var authStep = authorization.get('currentStep');\n    switch (authStep) {\n    case 'RequestToken':\n      //get access token\n      this._logger.info('requesting access token');\n      return this._auth.getOAuthAccessTokenAsync(\n          authorization.get('RequestToken'),\n          authorization.get('RequestTokenSecret'),\n          authorization.query.oauth_verifier)\n        .then((results) => {\n          return Promise.all([\n            authorization.set('AccessToken', results[0]),\n            authorization.set('AccessTokenSecret', results[1]),\n            authorization.set('currentStep', 'AccessToken')\n          ]).then(() => {\n            return authorization.done();\n          });\n        })\n\n      break;\n\n    default:\n      //do request token auth\n      this._logger.info('requesting request token');\n      return this._auth.getOAuthRequestTokenAsync()\n        .then((results) => {\n          return Promise.all([\n            authorization.set('RequestToken', results[0]),\n            authorization.set('RequestTokenSecret', results[1]),\n            authorization.set('currentStep', 'RequestToken')\n          ]).then(() => {\n            this._logger.info('redirecting user');\n            let authorizationUri = this._configuration.authorizationUri;\n            authorizationUri.query = authorizationUri.query || {};\n            authorizationUri.query.oauth_token = results[0];\n            return authorization.redirect(authorizationUri.format())\n          });\n        });\n    }\n    //default just mark as done\n    return authorization.done();\n  }\n\n}\n"
+    "content": "'use strict';\nimport Bluebird from 'bluebird';\nimport config from 'config';\nimport url from 'url';\nimport {\n  clone\n}\nfrom 'lodash';\nimport {\n  OAuth\n}\nfrom '@hoist/oauth';\nimport logger from '@hoist/logger';\n\n/**\n * @protected\n * The base OAuth2 Connector class used for Hoist Connectors to implement OAuth2 flows\n * @implements {ConnectorInterface}\n */\nexport default class OAuthConnectorBase {\n\n  /**\n   * @protected\n   * create a new OAuth2Connector\n   * @param {object} configuration - the configuration details for this connector\n   * @param {string} configuration.consumerKey - the OAuth consumer key\n   * @param {string} configuration.consumerSecret - the OAuth consumer secret\n   * @param {string} configuration.requestTokenUri - the uri to use for request token calls\n   * @param {string} configuration.accessTokenUri - the uri to use for access token calls\n   * @param {string} configuration.authorizationUri - the uri to send users to authorise access\n   * @param {object} [configuration.oauthVersion=1.0A] - the version of OAuth to use\n   * @param {object} [configuration.signingMethod=HMAC-SHA1] - the signing method to use\n   */\n  constructor(configuration) {\n    this._logger = logger.child({\n      cls: this.constructor.name\n    });\n    this._configuration = configuration;\n    this._configuration.authorizationUri = url.parse(this._configuration.authorizationUri, true);\n    delete this._configuration.authorizationUri.search;\n    this._logger.info({\n      configuraion: this._configuration\n    });\n    this._auth = Bluebird.promisifyAll(\n      new OAuth(\n        configuration.requestTokenUri,\n        configuration.accessTokenUri,\n        configuration.consumerKey,\n        configuration.consumerSecret,\n        configuration.oauthVersion || '1.0A',\n        `https://${config.get('Hoist.domains.bouncer')}/bounce`,\n        configuration.signingMethod || 'HMAC-SHA1'\n      ));\n    this._auth._performSecureRequestAsync = Bluebird.promisify(this._auth._performSecureRequest, this._auth)\n  }\n\n  /**\n   * perform an authorized request\n   * @param {string} method - the HTTP method to call\n   * @param {string} requestUri - the uri of the request to call\n   * @param {string} body - the data to send\n   * @param {string} contentType - the contentType header\n   */\n  _performRequest(method, requestUri, body, contentType) {\n    let extraParams;\n    if (contentType && contentType === 'application/x-www-form-urlencoded') {\n      extraParams = body;\n      body = null;\n    }\n    if (body && (!(typeof (body) === 'string' || body instanceof Buffer))) {\n      body = JSON.stringify(body);\n    }\n\n    return this._auth._performSecureRequestAsync(\n      this._accessToken,\n      this._accessTokenSecret,\n      method,\n      requestUri,\n      extraParams,\n      body,\n      contentType || 'application/json')\n  }\n\n  /**\n   * authorize the oauth connection with existing parameters\n   * @param {<AuthorizationStore>} authorization - the users authorization\n   */\n  authorize(authorization) {\n    this._accessToken = authorization.get('AccessToken');\n    this._accessTokenSecret = authorization.get('AccessTokenSecret');\n  }\n\n  /**\n   * @param {AuthorizationStore} authorization - the users authorization\n   */\n  receiveBounce(authorization) {\n    this._logger.info('receiving bounce');\n    var authStep = authorization.get('currentStep');\n    switch (authStep) {\n    case 'RequestToken':\n      //get access token\n      this._logger.info('requesting access token');\n      return this._auth.getOAuthAccessTokenAsync(\n          authorization.get('RequestToken'),\n          authorization.get('RequestTokenSecret'),\n          authorization.query.oauth_verifier)\n        .then((results) => {\n          return authorization.set('AccessToken', results[0]).then(() => {\n            return authorization.set('AccessTokenSecret', results[1]);\n          }).then(() => {\n            return authorization.set('currentStep', 'AccessToken');\n          }).then(() => {\n            return authorization.done();\n          });\n        })\n\n      break;\n\n    default:\n      //do request token auth\n      this._logger.info('requesting request token');\n      return this._auth.getOAuthRequestTokenAsync()\n        .then((results) => {\n          return authorization.set('RequestToken', results[0]).\n          then(() => {\n            return authorization.set('RequestTokenSecret', results[1]);\n          }).then(() => {\n            return authorization.set('currentStep', 'RequestToken')\n          }).then(() => {\n            this._logger.info('redirecting user');\n            let authorizationUri = this._configuration.authorizationUri;\n            authorizationUri.query = authorizationUri.query || {};\n            authorizationUri.query.oauth_token = results[0];\n            return authorization.redirect(authorizationUri.format())\n          });\n        });\n    }\n    //default just mark as done\n    return authorization.done();\n  }\n\n}\n"
   },
   {
     "kind": "class",
@@ -870,7 +870,7 @@
     "longname": "src/oauth_connector.js~OAuthConnectorBase#_auth",
     "access": null,
     "description": null,
-    "lineNumber": 40,
+    "lineNumber": 44,
     "undocument": true,
     "type": {
       "types": [
@@ -887,7 +887,7 @@
     "longname": "src/oauth_connector.js~OAuthConnectorBase#_performRequest",
     "access": null,
     "description": "perform an authorized request",
-    "lineNumber": 60,
+    "lineNumber": 64,
     "params": [
       {
         "nullable": null,
@@ -946,7 +946,7 @@
     "longname": "src/oauth_connector.js~OAuthConnectorBase#authorize",
     "access": null,
     "description": "authorize the oauth connection with existing parameters",
-    "lineNumber": 78,
+    "lineNumber": 88,
     "params": [
       {
         "nullable": null,
@@ -970,7 +970,7 @@
     "longname": "src/oauth_connector.js~OAuthConnectorBase#_accessToken",
     "access": null,
     "description": null,
-    "lineNumber": 79,
+    "lineNumber": 89,
     "undocument": true,
     "type": {
       "types": [
@@ -987,7 +987,7 @@
     "longname": "src/oauth_connector.js~OAuthConnectorBase#_accessTokenSecret",
     "access": null,
     "description": null,
-    "lineNumber": 80,
+    "lineNumber": 90,
     "undocument": true,
     "type": {
       "types": [
@@ -1004,7 +1004,7 @@
     "longname": "src/oauth_connector.js~OAuthConnectorBase#receiveBounce",
     "access": null,
     "description": null,
-    "lineNumber": 86,
+    "lineNumber": 96,
     "params": [
       {
         "nullable": null,

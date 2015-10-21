@@ -94,6 +94,10 @@ export default class OAuthConnectorBase {
     });
     this._configuration = configuration;
     this._configuration.authorizationUri = url.parse(this._configuration.authorizationUri, true);
+    delete this._configuration.authorizationUri.search;
+    this._logger.info({
+      configuraion: this._configuration
+    });
     this._auth = Bluebird.promisifyAll(
       new OAuth(
         configuration.requestTokenUri,
@@ -115,17 +119,23 @@ export default class OAuthConnectorBase {
    * @param {string} contentType - the contentType header
    */
   _performRequest(method, requestUri, body, contentType) {
-    if (!(typeof (body) === &apos;string&apos; || body instanceof Buffer)) {
+    let extraParams;
+    if (contentType &amp;&amp; contentType === &apos;application/x-www-form-urlencoded&apos;) {
+      extraParams = body;
+      body = null;
+    }
+    if (body &amp;&amp; (!(typeof (body) === &apos;string&apos; || body instanceof Buffer))) {
       body = JSON.stringify(body);
     }
+
     return this._auth._performSecureRequestAsync(
       this._accessToken,
       this._accessTokenSecret,
       method,
       requestUri,
-      null,
+      extraParams,
       body,
-      contentType)
+      contentType || &apos;application/json&apos;)
   }
 
   /**
@@ -152,11 +162,11 @@ export default class OAuthConnectorBase {
           authorization.get(&apos;RequestTokenSecret&apos;),
           authorization.query.oauth_verifier)
         .then((results) =&gt; {
-          return Promise.all([
-            authorization.set(&apos;AccessToken&apos;, results[0]),
-            authorization.set(&apos;AccessTokenSecret&apos;, results[1]),
-            authorization.set(&apos;currentStep&apos;, &apos;AccessToken&apos;)
-          ]).then(() =&gt; {
+          return authorization.set(&apos;AccessToken&apos;, results[0]).then(() =&gt; {
+            return authorization.set(&apos;AccessTokenSecret&apos;, results[1]);
+          }).then(() =&gt; {
+            return authorization.set(&apos;currentStep&apos;, &apos;AccessToken&apos;);
+          }).then(() =&gt; {
             return authorization.done();
           });
         })
@@ -168,11 +178,12 @@ export default class OAuthConnectorBase {
       this._logger.info(&apos;requesting request token&apos;);
       return this._auth.getOAuthRequestTokenAsync()
         .then((results) =&gt; {
-          return Promise.all([
-            authorization.set(&apos;RequestToken&apos;, results[0]),
-            authorization.set(&apos;RequestTokenSecret&apos;, results[1]),
-            authorization.set(&apos;currentStep&apos;, &apos;RequestToken&apos;)
-          ]).then(() =&gt; {
+          return authorization.set(&apos;RequestToken&apos;, results[0]).
+          then(() =&gt; {
+            return authorization.set(&apos;RequestTokenSecret&apos;, results[1]);
+          }).then(() =&gt; {
+            return authorization.set(&apos;currentStep&apos;, &apos;RequestToken&apos;)
+          }).then(() =&gt; {
             this._logger.info(&apos;redirecting user&apos;);
             let authorizationUri = this._configuration.authorizationUri;
             authorizationUri.query = authorizationUri.query || {};

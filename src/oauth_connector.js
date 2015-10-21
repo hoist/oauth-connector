@@ -37,6 +37,10 @@ export default class OAuthConnectorBase {
     });
     this._configuration = configuration;
     this._configuration.authorizationUri = url.parse(this._configuration.authorizationUri, true);
+    delete this._configuration.authorizationUri.search;
+    this._logger.info({
+      configuraion: this._configuration
+    });
     this._auth = Bluebird.promisifyAll(
       new OAuth(
         configuration.requestTokenUri,
@@ -58,17 +62,23 @@ export default class OAuthConnectorBase {
    * @param {string} contentType - the contentType header
    */
   _performRequest(method, requestUri, body, contentType) {
-    if (!(typeof (body) === 'string' || body instanceof Buffer)) {
+    let extraParams;
+    if (contentType && contentType === 'application/x-www-form-urlencoded') {
+      extraParams = body;
+      body = null;
+    }
+    if (body && (!(typeof (body) === 'string' || body instanceof Buffer))) {
       body = JSON.stringify(body);
     }
+
     return this._auth._performSecureRequestAsync(
       this._accessToken,
       this._accessTokenSecret,
       method,
       requestUri,
-      null,
+      extraParams,
       body,
-      contentType)
+      contentType || 'application/json')
   }
 
   /**
@@ -95,11 +105,11 @@ export default class OAuthConnectorBase {
           authorization.get('RequestTokenSecret'),
           authorization.query.oauth_verifier)
         .then((results) => {
-          return Promise.all([
-            authorization.set('AccessToken', results[0]),
-            authorization.set('AccessTokenSecret', results[1]),
-            authorization.set('currentStep', 'AccessToken')
-          ]).then(() => {
+          return authorization.set('AccessToken', results[0]).then(() => {
+            return authorization.set('AccessTokenSecret', results[1]);
+          }).then(() => {
+            return authorization.set('currentStep', 'AccessToken');
+          }).then(() => {
             return authorization.done();
           });
         })
@@ -111,11 +121,12 @@ export default class OAuthConnectorBase {
       this._logger.info('requesting request token');
       return this._auth.getOAuthRequestTokenAsync()
         .then((results) => {
-          return Promise.all([
-            authorization.set('RequestToken', results[0]),
-            authorization.set('RequestTokenSecret', results[1]),
-            authorization.set('currentStep', 'RequestToken')
-          ]).then(() => {
+          return authorization.set('RequestToken', results[0]).
+          then(() => {
+            return authorization.set('RequestTokenSecret', results[1]);
+          }).then(() => {
+            return authorization.set('currentStep', 'RequestToken')
+          }).then(() => {
             this._logger.info('redirecting user');
             let authorizationUri = this._configuration.authorizationUri;
             authorizationUri.query = authorizationUri.query || {};
