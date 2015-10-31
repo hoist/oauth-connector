@@ -1,7 +1,7 @@
 {
-  "coverage": "90%",
-  "expectCount": 20,
-  "actualCount": 18,
+  "coverage": "90.47%",
+  "expectCount": 21,
+  "actualCount": 19,
   "files": {
     "src/authorisation_store.js": {
       "expectCount": 7,
@@ -17,8 +17,8 @@
       ]
     },
     "src/oauth2_connector.js": {
-      "expectCount": 6,
-      "actualCount": 6,
+      "expectCount": 7,
+      "actualCount": 7,
       "undocumentLines": []
     },
     "src/oauth_connector.js": {

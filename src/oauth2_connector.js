@@ -25,8 +25,7 @@ export default class OAuth2ConnectorBase {
    * @param {object} [configuration.customHeaders] - any custom headers to send
    */
   constructor(configuration) {
-    this._auth = Bluebird.promisifyAll(new OAuth2(configuration.clientId, configuration.clientSecret, configuration.baseSite, configuration.authorizationPath, configuration.accessTokenPath, configuration.customHeaders));
-    this._auth._requestAsync = Bluebird.promisify(this._auth._request, this._auth);
+    this._configureClient(configuration);
   }
 
   /**
@@ -39,6 +38,22 @@ export default class OAuth2ConnectorBase {
     return Promise.resolve({
       redirect_uri: `https://${config.get('Hoist.domains.bouncer')}/bounce`
     });
+  }
+
+  /**
+   * @protected
+   * configure the underlying oauth provider
+   * @param {object} configuration - the configuration details for this connector
+   * @param {string} configuration.clientId - the OAuth2 client id
+   * @param {string} configuration.clientSecret - the OAuth2 client secret
+   * @param {string} configuration.baseSite - the base uri to use for authorization calls
+   * @param {string} [configuration.authorizationPath=/oauth/authorize] - the path to send users to authorise access
+   * @param {string} [configuration.accessTokenPath=/oauth/access_token] - the path to use to retrieve access tokens
+   * @param {object} [configuration.customHeaders] - any custom headers to send
+   */
+  _configureClient(configuration) {
+    this._auth = Bluebird.promisifyAll(new OAuth2(configuration.clientId, configuration.clientSecret, configuration.baseSite, configuration.authorizationPath, configuration.accessTokenPath, configuration.customHeaders));
+    this._auth._requestAsync = Bluebird.promisify(this._auth._request, this._auth);
   }
 
   /**
@@ -62,15 +77,16 @@ export default class OAuth2ConnectorBase {
    * @param {string} contentType - the contentType header
    */
   _performRequest(method, requestUri, body, contentType) {
+    let accessToken = this._authorization.get('AccessToken');
     let headers = {
       'Content-Type': contentType || 'application/json',
       'User-Agent': 'Hoist',
-      'Authorization': this._auth.buildAuthHeader(this._accessToken)
+      'Authorization': this._auth.buildAuthHeader(accessToken)
     };
-    if (!(typeof (body) === 'string' || body instanceof Buffer)) {
+    if (body && !(typeof (body) === 'string' || body instanceof Buffer)) {
       body = JSON.stringify(body);
     }
-    return this._auth._requestAsync(method, requestUri, headers, body, this._accessToken);
+    return this._auth._requestAsync(method, requestUri, headers, body, accessToken);
   }
 
   /**
@@ -78,8 +94,7 @@ export default class OAuth2ConnectorBase {
    * @param {<AuthorizationStore>} authorization - the users authorization
    */
   authorize(authorization) {
-    this._accessToken = authorization.get('AccessToken');
-    this._refreshToken = authorization.get('RefreshToken');
+    this._authorization = authorization;
   }
 
   /**

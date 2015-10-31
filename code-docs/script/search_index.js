@@ -432,6 +432,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/oauth2_connector.js~oauth2connectorbase#_configureclient",
+    "class/src/oauth2_connector.js~OAuth2ConnectorBase.html#instance-method-_configureClient",
+    "src/oauth2_connector.js~OAuth2ConnectorBase#_configureClient",
+    "method"
+  ],
+  [
     "src/oauth2_connector.js~oauth2connectorbase#authorize",
     "class/src/oauth2_connector.js~OAuth2ConnectorBase.html#instance-method-authorize",
     "src/oauth2_connector.js~OAuth2ConnectorBase#authorize",
