@@ -58,24 +58,24 @@
       ]
     },
     {
-      "type": "ExportDefaultDeclaration",
+      "type": "ExportNamedDeclaration",
       "declaration": {
         "type": "ClassDeclaration",
         "id": {
           "type": "Identifier",
           "name": "ConnectorInterface",
           "range": [
-            58,
-            76
+            50,
+            68
           ],
           "loc": {
             "start": {
               "line": 6,
-              "column": 21
+              "column": 13
             },
             "end": {
               "line": 6,
-              "column": 39
+              "column": 31
             }
           }
         },
@@ -89,8 +89,8 @@
                 "type": "Identifier",
                 "name": "authorize",
                 "range": [
-                  239,
-                  248
+                  231,
+                  240
                 ],
                 "loc": {
                   "start": {
@@ -111,8 +111,8 @@
                     "type": "Identifier",
                     "name": "authorization",
                     "range": [
-                      249,
-                      262
+                      241,
+                      254
                     ],
                     "loc": {
                       "start": {
@@ -130,8 +130,8 @@
                   "type": "BlockStatement",
                   "body": [],
                   "range": [
-                    264,
-                    270
+                    256,
+                    262
                   ],
                   "loc": {
                     "start": {
@@ -147,8 +147,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  248,
-                  270
+                  240,
+                  262
                 ],
                 "loc": {
                   "start": {
@@ -164,8 +164,8 @@
               "kind": "method",
               "computed": false,
               "range": [
-                239,
-                270
+                231,
+                262
               ],
               "loc": {
                 "start": {
@@ -182,8 +182,8 @@
                   "type": "Block",
                   "value": "\n   * initialize this connector with existing authorization information\n   * @param {<AuthorizationStore>} authorization - the users authorization\n   ",
                   "range": [
-                    82,
-                    236
+                    74,
+                    228
                   ],
                   "loc": {
                     "start": {
@@ -202,8 +202,8 @@
                   "type": "Block",
                   "value": "\n   * control a user through the authorization flow\n   * @param {AuthorizationStore} authorization - the users authorization\n   ",
                   "range": [
-                    274,
-                    406
+                    266,
+                    398
                   ],
                   "loc": {
                     "start": {
@@ -225,8 +225,8 @@
                 "type": "Identifier",
                 "name": "recieveBounce",
                 "range": [
-                  409,
-                  422
+                  401,
+                  414
                 ],
                 "loc": {
                   "start": {
@@ -247,8 +247,8 @@
                     "type": "Identifier",
                     "name": "authorization",
                     "range": [
-                      423,
-                      436
+                      415,
+                      428
                     ],
                     "loc": {
                       "start": {
@@ -266,8 +266,8 @@
                   "type": "BlockStatement",
                   "body": [],
                   "range": [
-                    438,
-                    444
+                    430,
+                    436
                   ],
                   "loc": {
                     "start": {
@@ -283,8 +283,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  422,
-                  444
+                  414,
+                  436
                 ],
                 "loc": {
                   "start": {
@@ -300,8 +300,8 @@
               "kind": "method",
               "computed": false,
               "range": [
-                409,
-                444
+                401,
+                436
               ],
               "loc": {
                 "start": {
@@ -318,8 +318,8 @@
                   "type": "Block",
                   "value": "\n   * control a user through the authorization flow\n   * @param {AuthorizationStore} authorization - the users authorization\n   ",
                   "range": [
-                    274,
-                    406
+                    266,
+                    398
                   ],
                   "loc": {
                     "start": {
@@ -337,13 +337,13 @@
             }
           ],
           "range": [
-            77,
-            446
+            69,
+            438
           ],
           "loc": {
             "start": {
               "line": 6,
-              "column": 40
+              "column": 32
             },
             "end": {
               "line": 23,
@@ -352,13 +352,13 @@
           }
         },
         "range": [
-          52,
-          446
+          44,
+          438
         ],
         "loc": {
           "start": {
             "line": 6,
-            "column": 15
+            "column": 7
           },
           "end": {
             "line": 23,
@@ -387,9 +387,11 @@
         ],
         "trailingComments": []
       },
+      "specifiers": [],
+      "source": null,
       "range": [
         37,
-        446
+        438
       ],
       "loc": {
         "start": {
@@ -426,7 +428,7 @@
   "sourceType": "module",
   "range": [
     0,
-    446
+    438
   ],
   "loc": {
     "start": {
@@ -461,8 +463,8 @@
       "type": "Block",
       "value": "\n   * initialize this connector with existing authorization information\n   * @param {<AuthorizationStore>} authorization - the users authorization\n   ",
       "range": [
-        82,
-        236
+        74,
+        228
       ],
       "loc": {
         "start": {
@@ -479,8 +481,8 @@
       "type": "Block",
       "value": "\n   * control a user through the authorization flow\n   * @param {AuthorizationStore} authorization - the users authorization\n   ",
       "range": [
-        274,
-        406
+        266,
+        398
       ],
       "loc": {
         "start": {

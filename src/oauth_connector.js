@@ -17,7 +17,7 @@ import logger from '@hoist/logger';
  * The base OAuth2 Connector class used for Hoist Connectors to implement OAuth2 flows
  * @implements {ConnectorInterface}
  */
-export default class OAuthConnectorBase {
+export class OAuthConnectorBase {
 
   /**
    * @protected

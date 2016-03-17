@@ -1,7 +1,7 @@
 /**
  * @interface
  */
-export default class AuthorizationStore {
+export class AuthorizationStore {
 
   /**
    * the query params the user is currently showing

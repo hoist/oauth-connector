@@ -3,7 +3,7 @@
 /**
  * @interface
  */
-export default class ConnectorInterface {
+export class ConnectorInterface {
 
   /*
    * initialize this connector with existing authorization information
