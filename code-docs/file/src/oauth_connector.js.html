@@ -93,8 +93,12 @@ export class OAuthConnectorBase {
         configuration.oauthVersion || &apos;1.0A&apos;,
         `https://${config.get(&apos;Hoist.domains.bouncer&apos;)}/bounce`,
         configuration.signingMethod || &apos;HMAC-SHA1&apos;
-      ));
-    this._auth._performSecureRequestAsync = Bluebird.promisify(this._auth._performSecureRequest, this._auth)
+      ), {
+        multiArgs: true
+      });
+    this._auth._performSecureRequestAsync = Bluebird.promisify(this._auth._performSecureRequest, this._auth, {
+      multiArgs: true
+    });
   }
 
   /**

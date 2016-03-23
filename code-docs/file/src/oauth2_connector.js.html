@@ -95,8 +95,12 @@ export class OAuth2ConnectorBase {
    * @param {object} [configuration.customHeaders] - any custom headers to send
    */
   _configureClient(configuration) {
-    this._auth = Bluebird.promisifyAll(new OAuth2(configuration.clientId, configuration.clientSecret, configuration.baseSite, configuration.authorizationPath, configuration.accessTokenPath, configuration.customHeaders));
-    this._auth._requestAsync = Bluebird.promisify(this._auth._request, this._auth);
+    this._auth = Bluebird.promisifyAll(new OAuth2(configuration.clientId, configuration.clientSecret, configuration.baseSite, configuration.authorizationPath, configuration.accessTokenPath, configuration.customHeaders), {
+      multiArgs: true
+    });
+    this._auth._requestAsync = Bluebird.promisify(this._auth._request, this._auth, {
+      multiArgs: true
+    });
   }
 
   /**
