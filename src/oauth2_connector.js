@@ -82,14 +82,14 @@ export class OAuth2ConnectorBase {
    * @param {object} overridHeaders - headers to add or override in the request
    */
   _performRequest(method, requestUri, body, contentType, overrideHeaders) {
-    overridHeaders = overrideHeaders || {};
+    overrideHeaders = overrideHeaders || {};
     let accessToken = this._authorization.get('AccessToken');
     let coreHeaders = {
       'Content-Type': contentType || 'application/json',
       'User-Agent': 'Hoist',
       'Authorization': this._auth.buildAuthHeader(accessToken)
     };
-    let headers = Object.assign({}, coreHeaders, overridHeaders);
+    let headers = Object.assign({}, coreHeaders, overrideHeaders);
 
     if (body && !(typeof (body) === 'string' || body instanceof Buffer)) {
       body = JSON.stringify(body);
