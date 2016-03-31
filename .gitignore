@@ -46,3 +46,5 @@ log/*
 config/runtime.json
 config/development.json
 .queues
+code-docs
+lib
