@@ -1,6 +1,6 @@
 {
   "name": "@hoist/oauth-connector",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Base OAuth Connector classes",
   "main": "./lib/index.js",
   "scripts": {
