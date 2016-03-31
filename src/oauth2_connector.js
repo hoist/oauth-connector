@@ -79,14 +79,18 @@ export class OAuth2ConnectorBase {
    * @param {string} requestUri - the uri of the request to call
    * @param {object} body - the data to send
    * @param {string} contentType - the contentType header
+   * @param {object} overridHeaders - headers to add or override in the request
    */
-  _performRequest(method, requestUri, body, contentType) {
+  _performRequest(method, requestUri, body, contentType, overrideHeaders) {
+    overridHeaders = overrideHeaders || {};
     let accessToken = this._authorization.get('AccessToken');
-    let headers = {
+    let coreHeaders = {
       'Content-Type': contentType || 'application/json',
       'User-Agent': 'Hoist',
       'Authorization': this._auth.buildAuthHeader(accessToken)
     };
+    let headers = Object.assign({}, coreHeaders, overridHeaders);
+
     if (body && !(typeof (body) === 'string' || body instanceof Buffer)) {
       body = JSON.stringify(body);
     }
